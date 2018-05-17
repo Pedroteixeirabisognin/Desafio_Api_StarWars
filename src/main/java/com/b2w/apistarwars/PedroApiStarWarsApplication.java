@@ -1,5 +1,8 @@
 package com.b2w.apistarwars;
 
+
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -29,6 +32,11 @@ public class PedroApiStarWarsApplication implements CommandLineRunner {
 		System.out.println("-------------------------------");
 		for (Planeta planeta : planetrepo.findAll()) {
 			System.out.println(planeta);
+		}
+				
+		Optional<Planeta> obj = planetrepo.findById("Teste");
+		if(obj.isPresent()) {
+			planetrepo.deleteById(obj.get().getId());
 		}
 		
 	}
