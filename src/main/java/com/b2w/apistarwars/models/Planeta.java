@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Planeta implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	private String id;
 	private String nome;
 	private String clima;
 	private String terreno;
@@ -14,14 +15,22 @@ public class Planeta implements Serializable {
 		super();
 	}
 	
-	public Planeta(String nome, String clima, String terreno, int aparições) {
+	public Planeta(String id, String nome, String clima, String terreno, int aparições) {
 		super();
+		this.id = id;
 		this.nome = nome;
 		this.clima = clima;
 		this.terreno = terreno;
 		this.aparições = aparições;
 	}
+	
+	public String getId() {
+		return id;
+	}
 
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getNome() {
 		return nome;
 	}
