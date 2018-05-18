@@ -16,6 +16,7 @@ public class PlanetaService {
 	private PlanetaRepository repo;
 	
 	public Planeta insert(Planeta obj) {
+		setIdNull(obj);
 		return repo.save(obj);
 	}
 	public List<Planeta> findAll(){
@@ -35,5 +36,10 @@ public class PlanetaService {
 	public void delete(String id) {
 		findById(id);
 		repo.deleteById(id);
+	}
+	
+	public Planeta setIdNull(Planeta obj) {
+		obj.setId(null);
+		return obj;
 	}
 }
