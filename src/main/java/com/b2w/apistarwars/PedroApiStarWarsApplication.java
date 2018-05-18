@@ -30,10 +30,7 @@ public class PedroApiStarWarsApplication implements CommandLineRunner {
 		
 		System.out.println("Encontrando planetas ou gerando uma galáxia muito, muito distante...");
 		System.out.println("-------------------------------");
-		for (Planeta planeta : planetrepo.findAll()) {
-			System.out.println(planeta);
-		}
-				
+		
 		Optional<Planeta> obj = planetrepo.findById("Teste");
 		if(obj.isPresent()) {
 			planetrepo.deleteById(obj.get().getId());
