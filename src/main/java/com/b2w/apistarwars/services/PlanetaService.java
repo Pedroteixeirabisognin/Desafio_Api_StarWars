@@ -14,6 +14,10 @@ public class PlanetaService {
 
 	@Autowired
 	private PlanetaRepository repo;
+	
+	public Planeta insert(Planeta obj) {
+		return repo.save(obj);
+	}
 	public List<Planeta> findAll(){
 		return repo.findAll();
 		
