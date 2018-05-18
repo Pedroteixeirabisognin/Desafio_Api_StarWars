@@ -26,6 +26,7 @@ public class PlanetaController {
 	@Autowired
 	private PlanetaService service;
 	
+	
 	@PostMapping
 	public ResponseEntity<Void> inserePlaneta(@RequestBody Planeta planeta){
 		planeta = service.insert(planeta);
@@ -37,7 +38,7 @@ public class PlanetaController {
 	public ResponseEntity<List<Planeta>> encontraTodos(){
 		List<Planeta> planetas = service.findAll();
 		return ResponseEntity.ok().body(planetas);
-			}
+	}
 	
 	@GetMapping(value="/buscaid")
 	public ResponseEntity<Planeta> encontraPorID(@RequestParam(value="id", defaultValue="") String id){

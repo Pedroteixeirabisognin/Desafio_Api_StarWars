@@ -4,22 +4,21 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PlanetsApiExt {
 
-	private String filmes;
+	private String films;
 
 	public PlanetsApiExt() {
 	}
 	
-	public PlanetsApiExt(String filmes) {
-		super();
-		this.filmes = filmes;
+	public PlanetsApiExt(String films) {
+		this.films = films;
 	}
 
-	public String getFilmes() {
-		return filmes;
+	public String getFilms() {
+		return films;
 	}
 
-	public void setFilmes(String filmes) {
-		this.filmes = filmes;
+	public void setFilms(String filmes) {
+		this.films = filmes;
 	}
 	
 	

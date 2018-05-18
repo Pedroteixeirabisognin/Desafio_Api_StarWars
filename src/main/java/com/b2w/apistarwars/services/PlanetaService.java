@@ -5,8 +5,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.b2w.apistarwars.client.SWAPIRestTeamplate;
 import com.b2w.apistarwars.exception.ObjectNotFoundException;
 import com.b2w.apistarwars.models.Planeta;
+import com.b2w.apistarwars.models.PlanetsApiExt;
 import com.b2w.apistarwars.repository.PlanetaRepository;
 
 @Service
@@ -20,6 +22,9 @@ public class PlanetaService {
 		return repo.save(obj);
 	}
 	public List<Planeta> findAll(){
+		PlanetsApiExt planeta = SWAPIRestTeamplate.dadoApiExt();
+		System.out.println(planeta.getFilms());
+		
 		return repo.findAll();
 		
 	}
