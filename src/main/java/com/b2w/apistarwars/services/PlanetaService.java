@@ -21,6 +21,15 @@ public class PlanetaService {
 	
 	public Planeta findById(String id) {
 		Optional<Planeta> obj = repo.findById(id);
-		return  obj.orElseThrow(() -> new ObjectNotFoundException("Planeta não encontrado"));
+		return  obj.orElseThrow(() -> new ObjectNotFoundException("Id não encontrada!!"));
+	}
+	
+	public List<Planeta> findByNome(String text){
+		return repo.findByNome(text);
+	}
+	
+	public void delete(String id) {
+		findById(id);
+		repo.deleteById(id);
 	}
 }

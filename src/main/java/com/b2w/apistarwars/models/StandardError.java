@@ -1,4 +1,4 @@
-package com.b2w.apistarwars.controllers.exception;
+package com.b2w.apistarwars.models;
 
 import java.io.Serializable;
 

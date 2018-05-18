@@ -1,4 +1,4 @@
-package com.b2w.apistarwars.controllers.exception;
+package com.b2w.apistarwars.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.b2w.apistarwars.exception.ObjectNotFoundException;
+import com.b2w.apistarwars.models.StandardError;
 
 @ControllerAdvice
 public class ControlExceptionHandler {
