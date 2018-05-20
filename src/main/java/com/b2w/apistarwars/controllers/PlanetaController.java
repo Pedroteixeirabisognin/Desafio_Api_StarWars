@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.b2w.apistarwars.client.SWAPIRestTeamplate;
 import com.b2w.apistarwars.models.Planeta;
+import com.b2w.apistarwars.models.PlanetaResponse;
 import com.b2w.apistarwars.services.PlanetaService;
 import com.b2w.apistarwars.util.URL;
 
@@ -26,6 +28,8 @@ public class PlanetaController {
 	@Autowired
 	private PlanetaService service;
 	
+	@Autowired
+	private SWAPIRestTeamplate swapi;
 	
 	@PostMapping
 	public ResponseEntity<Void> inserePlaneta(@RequestBody Planeta planeta){
@@ -41,9 +45,10 @@ public class PlanetaController {
 	}
 	
 	@GetMapping(value="/buscaid")
-	public ResponseEntity<Planeta> encontraPorID(@RequestParam(value="id", defaultValue="") String id){
+	public ResponseEntity<PlanetaResponse> encontraPorID(@RequestParam(value="id", defaultValue="") String id){
 		Planeta planeta = service.findById(id);
-		return ResponseEntity.ok().body(planeta);
+		PlanetaResponse resposta = new PlanetaResponse(planeta.getNome(),planeta.getClima(),planeta.getTerreno(),swapi.RetornaAparicoes(planeta.getNome()));
+		return ResponseEntity.ok().body(resposta);
 	}
 	
 	@GetMapping(value="/buscanome")
