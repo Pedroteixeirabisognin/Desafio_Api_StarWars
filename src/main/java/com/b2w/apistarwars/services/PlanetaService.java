@@ -34,8 +34,7 @@ public class PlanetaService {
 	}
 	
 	public void delete(String id) {
-		findById(id);
-		repo.deleteById(id);
+		repo.delete(findById(id));
 	}
 	
 	public Planeta setIdNull(Planeta obj) {

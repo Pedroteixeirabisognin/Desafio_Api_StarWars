@@ -42,26 +42,20 @@ public class PlanetaController {
 	@GetMapping
 	public ResponseEntity<List<PlanetaResponse>> encontraTodos(){
 		List<Planeta> planetas = service.findAll();
-		List<PlanetaResponse> response = new ArrayList<>();
-		planetas.forEach((x)->response.add(new PlanetaResponse(x.getNome(),x.getClima(),x.getTerreno(),swapi.RetornaAparicoes(x.getNome())))); 
-		return ResponseEntity.ok().body(response);
+		return ResponseEntity.ok().body(insereAparicao(planetas));
 	}
 	
 	@GetMapping(value="/buscaid")
 	public ResponseEntity<PlanetaResponse> encontraPorID(@RequestParam(value="id", defaultValue="") String id){
 		Planeta planeta = service.findById(id);
-		PlanetaResponse resposta = new PlanetaResponse(planeta.getNome(),planeta.getClima(),planeta.getTerreno(),swapi.RetornaAparicoes(planeta.getNome()));
-		return ResponseEntity.ok().body(resposta);
+		return ResponseEntity.ok().body(insereAparicao(planeta));
 	}
 	
 	@GetMapping(value="/buscanome")
 	public ResponseEntity<List<PlanetaResponse>> encontraPorNome(@RequestParam(value="nome", defaultValue="") String nome){
-		
 		nome = URL.decodeParam(nome);
 		List<Planeta> planetas = service.findByNome(nome);
-		List<PlanetaResponse> response = new ArrayList<>();
-		planetas.forEach((x)->response.add(new PlanetaResponse(x.getNome(),x.getClima(),x.getTerreno(),swapi.RetornaAparicoes(x.getNome())))); 
-		return ResponseEntity.ok().body(response);
+		return ResponseEntity.ok().body(insereAparicao(planetas));
 	}
 	
 	@DeleteMapping(value="/{id}")
@@ -70,5 +64,14 @@ public class PlanetaController {
 		return ResponseEntity.noContent().build();
 	}
 	
-
+	public PlanetaResponse insereAparicao(Planeta planeta) {
+		PlanetaResponse resposta = new PlanetaResponse(planeta.getId(),planeta.getNome(),planeta.getClima(),planeta.getTerreno(),swapi.RetornaAparicoes(planeta.getNome()));
+		return resposta;
+	}
+	
+	public List<PlanetaResponse> insereAparicao(List<Planeta> planetas) {
+		List<PlanetaResponse> resposta = new ArrayList<>();
+		planetas.forEach((x)->resposta.add(new PlanetaResponse(x.getId(),x.getNome(),x.getClima(),x.getTerreno(),swapi.RetornaAparicoes(x.getNome()))));
+		return resposta;
+	}
 }

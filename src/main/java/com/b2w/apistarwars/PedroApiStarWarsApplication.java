@@ -34,6 +34,8 @@ public class PedroApiStarWarsApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
+		swapi.TestaSWAPI();
+		
 		if(planetrepo.count() == 0) {
 			planetrepo.save(new Planeta("Teste","Teste","Teste", "Teste"));
 		}
@@ -46,8 +48,5 @@ public class PedroApiStarWarsApplication implements CommandLineRunner {
 			planetrepo.deleteById(obj.get().getId());
 		}
 
-		swapi.TestaSWAPI();
-		
-    
 	}
 }
