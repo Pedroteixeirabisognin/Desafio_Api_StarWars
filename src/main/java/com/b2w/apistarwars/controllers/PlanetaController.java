@@ -1,6 +1,7 @@
 package com.b2w.apistarwars.controllers;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +40,11 @@ public class PlanetaController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Planeta>> encontraTodos(){
+	public ResponseEntity<List<PlanetaResponse>> encontraTodos(){
 		List<Planeta> planetas = service.findAll();
-		return ResponseEntity.ok().body(planetas);
+		List<PlanetaResponse> response = new ArrayList<>();
+		planetas.forEach((x)->response.add(new PlanetaResponse(x.getNome(),x.getClima(),x.getTerreno(),swapi.RetornaAparicoes(x.getNome())))); 
+		return ResponseEntity.ok().body(response);
 	}
 	
 	@GetMapping(value="/buscaid")
@@ -52,10 +55,13 @@ public class PlanetaController {
 	}
 	
 	@GetMapping(value="/buscanome")
-	public ResponseEntity<List<Planeta>> encontraPorNome(@RequestParam(value="nome", defaultValue="") String nome){
+	public ResponseEntity<List<PlanetaResponse>> encontraPorNome(@RequestParam(value="nome", defaultValue="") String nome){
+		
 		nome = URL.decodeParam(nome);
-		List<Planeta> planeta = service.findByNome(nome);
-		return ResponseEntity.ok().body(planeta);
+		List<Planeta> planetas = service.findByNome(nome);
+		List<PlanetaResponse> response = new ArrayList<>();
+		planetas.forEach((x)->response.add(new PlanetaResponse(x.getNome(),x.getClima(),x.getTerreno(),swapi.RetornaAparicoes(x.getNome())))); 
+		return ResponseEntity.ok().body(response);
 	}
 	
 	@DeleteMapping(value="/{id}")

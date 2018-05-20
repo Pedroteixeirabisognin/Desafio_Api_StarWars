@@ -19,10 +19,9 @@ public class PlanetaService {
 		setIdNull(obj);
 		return repo.save(obj);
 	}
-	public List<Planeta> findAll(){
 	
+	public List<Planeta> findAll(){
 		return repo.findAll();
-		
 	}
 	
 	public Planeta findById(String id) {
@@ -30,8 +29,8 @@ public class PlanetaService {
 		return  obj.orElseThrow(() -> new ObjectNotFoundException("Id não encontrada!!"));
 	}
 	
-	public List<Planeta> findByNome(String text){
-		return repo.findByNome(text);
+	public List<Planeta> findByNome(String nome){
+		return repo.findByNomeContaining(nome);
 	}
 	
 	public void delete(String id) {
