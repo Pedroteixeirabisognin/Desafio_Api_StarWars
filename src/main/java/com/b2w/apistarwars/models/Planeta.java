@@ -20,7 +20,13 @@ public class Planeta implements Serializable {
 		super();
 	}
 	
-	
+	public Planeta( String nome, String clima, String terreno) {
+		super();
+		this.nome = nome;
+		this.clima = clima;
+		this.terreno = terreno;
+
+	}
 	public Planeta(String id, String nome, String clima, String terreno) {
 		super();
 		this.id = id;
