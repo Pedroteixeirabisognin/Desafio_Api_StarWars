@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.b2w.apistarwars.exception.BadRequest;
 import com.b2w.apistarwars.exception.ObjectNotFoundException;
 import com.b2w.apistarwars.models.Planeta;
 import com.b2w.apistarwars.repository.PlanetaRepository;
@@ -16,8 +17,11 @@ public class PlanetaService {
 	private PlanetaRepository repo;
 	
 	public Planeta insert(Planeta obj) {
-		setIdNull(obj);
-		return repo.save(obj);
+		
+			if(repo.findById(obj.getId()).isPresent())
+				throw new BadRequest("Id já existe!!");
+			else
+				return repo.save(obj);
 	}
 	
 	public List<Planeta> findAll(){
