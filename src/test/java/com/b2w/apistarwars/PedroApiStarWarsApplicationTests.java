@@ -40,15 +40,9 @@ public class PedroApiStarWarsApplicationTests {
 		
 		Planeta planeta = new Planeta("Teste","Teste","Teste","Teste");
 		ResponseEntity<String> response = null;
-		try {
-			response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
+		response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
 		
-		}catch(Exception e) {
 
-			rest.delete(BASE_PATH + port +"/planetas/"+ "Teste");
-			response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
-
-		}
 		Assert.assertEquals(201, response.getStatusCodeValue());
 		rest.delete(BASE_PATH + port +"/planetas/"+ "Teste");
 
@@ -57,18 +51,46 @@ public class PedroApiStarWarsApplicationTests {
 	public void testaInsercaoComMesmoID() {
 		
 		Planeta planeta = new Planeta("Teste","Teste","Teste", "Teste");
-		ResponseEntity<String> response = null;
-
+		
 		try {
 
-			response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
+			ResponseEntity<String> response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
 			response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
 			LOGGER.info("Não deveria receber " +  response.getStatusCodeValue());
+			Assert.fail();
+		
 		}catch (Exception e) {
 			
 			Assert.assertEquals("400 null", e.getMessage() );
  		}
 		rest.delete(BASE_PATH + port +"/planetas/"+ "Teste");
+
+	}
+	
+	@Test
+	public void testaBuscaID() {
+		
+		Planeta planeta = new Planeta("Teste","Teste","Teste", "Teste");
+		ResponseEntity<String>  response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
+
+		response = rest.getForEntity(BASE_PATH + port +"/planetas/buscaid?id=Teste", String.class);
+		Assert.assertEquals(200, response.getStatusCodeValue());
+		
+		rest.delete(BASE_PATH + port +"/planetas/"+ "Teste");
+
+	}
+	
+	@Test
+	public void testaBuscaIDSeNaoExiste() {
+		
+		try {
+
+			ResponseEntity<String> response = rest.getForEntity(BASE_PATH + port +"/planetas/buscaid?id=Teste", String.class);
+			LOGGER.info("Não deveria receber " +  response.getStatusCodeValue());
+		}catch(Exception e) {
+			
+			Assert.assertEquals("404 null", e.getMessage());
+		}
 
 	}
 	/*@LocalServerPort
