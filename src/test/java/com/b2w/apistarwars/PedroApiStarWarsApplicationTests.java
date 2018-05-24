@@ -1,5 +1,9 @@
 package com.b2w.apistarwars;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +36,6 @@ public class PedroApiStarWarsApplicationTests {
 	@Before
 	public void setUp() {
 		rest = new RestTemplate();
-		System.out.println(port);
 	}
 	
 	@Test
@@ -91,6 +94,47 @@ public class PedroApiStarWarsApplicationTests {
 			
 			Assert.assertEquals("404 null", e.getMessage());
 		}
+
+	}
+	
+	@Test
+	public void testaBuscaNome() {
+		
+		Planeta planeta = new Planeta("Teste","Teste","Teste", "Teste");
+		ResponseEntity<String>  response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
+
+		response = rest.getForEntity(BASE_PATH + port +"/planetas/buscanome?nome=Teste", String.class);
+		Assert.assertEquals(200, response.getStatusCodeValue());
+		
+		rest.delete(BASE_PATH + port +"/planetas/"+ "Teste");
+
+	}
+	
+	@Test
+	public void testaBuscaNomeSeNaoExiste() {
+
+			ResponseEntity<String> response = rest.getForEntity(BASE_PATH + port +"/planetas/buscanome?nome=Teste", String.class);
+			Assert.assertEquals(200, response.getStatusCodeValue());
+
+	}
+	
+	@Test
+	public void testaBuscaTodos() {
+		
+		Planeta planeta1 = new Planeta("Teste1","Teste","Teste", "Teste");
+		Planeta planeta2 = new Planeta("Teste2","Teste","Teste", "Teste");
+		Planeta planeta3 = new Planeta("Teste3","Teste","Teste", "Teste");
+		Planeta planeta4 = new Planeta("Teste4","Teste","Teste", "Teste");
+		List<Planeta>  planetas = new ArrayList<Planeta>();
+		planetas.add(planeta1);
+		planetas.add(planeta2);
+		planetas.add(planeta3);
+		planetas.add(planeta4);
+		ResponseEntity<String> response;
+		
+		response = rest.getForEntity(BASE_PATH + port +"/planetas/", String.class);
+		Assert.assertEquals(200, response.getStatusCodeValue());
+		
 
 	}
 	/*@LocalServerPort
