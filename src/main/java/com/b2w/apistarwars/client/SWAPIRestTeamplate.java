@@ -43,9 +43,7 @@ public class SWAPIRestTeamplate {
 	}
 	public int RetornaAparicoes(String nomePlaneta) {
 		
-	    int contaAparicoes = 0;
-
-    	
+	    
     	try {
     		RestTemplate restTemplate = new RestTemplate();
 	        HttpHeaders headers = new HttpHeaders();
@@ -54,15 +52,15 @@ public class SWAPIRestTeamplate {
 
 	        HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
     		ResponseEntity<ResultApiSW> response = restTemplate.exchange(url + "/?search=" + nomePlaneta , HttpMethod.GET,entity,ResultApiSW.class);
-            contaAparicoes = response.getBody().getResults().get(0).getFilms().size();
+            return response.getBody().getResults().get(0).getFilms().size();
     	
     	}catch(Exception e) {
     		
-    		contaAparicoes = 0;
+    		
+    		return 0;
     	}
 	        
 	
-        return contaAparicoes;
 	}
 		
 
