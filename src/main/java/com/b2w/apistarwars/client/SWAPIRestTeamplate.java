@@ -26,7 +26,7 @@ public class SWAPIRestTeamplate {
 
 	public void TestaSWAPI() {
 		
-			
+				
 			RestTemplate restTemplate = new RestTemplate();
 	        HttpHeaders headers = new HttpHeaders();
 	        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
