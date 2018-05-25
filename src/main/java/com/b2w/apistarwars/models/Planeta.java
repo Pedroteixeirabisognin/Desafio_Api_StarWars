@@ -2,14 +2,16 @@ package com.b2w.apistarwars.models;
 
 import java.io.Serializable;
 
-import org.springframework.data.annotation.Id;
+
 import org.springframework.data.mongodb.core.mapping.Document;
+
+
 
 @Document
 public class Planeta implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
+	
 	private String id;
 	private String nome;
 	private String clima;
@@ -19,8 +21,7 @@ public class Planeta implements Serializable {
 	public Planeta() {
 		super();
 	}
-	
-	public Planeta( String nome, String clima, String terreno) {
+	public Planeta(String nome, String clima, String terreno) {
 		super();
 		this.nome = nome;
 		this.clima = clima;

@@ -52,7 +52,13 @@ public class SWAPIRestTeamplate {
 
 	        HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
     		ResponseEntity<ResultApiSW> response = restTemplate.exchange(url + "/?search=" + nomePlaneta , HttpMethod.GET,entity,ResultApiSW.class);
-            return response.getBody().getResults().get(0).getFilms().size();
+        	System.out.println(response.getBody().getResults().get(0).getName());
+
+    		if(nomePlaneta.equals(response.getBody().getResults().get(0).getName())){
+        		return response.getBody().getResults().get(0).getFilms().size();
+
+            }
+    		return 0;
     	
     	}catch(Exception e) {
     		

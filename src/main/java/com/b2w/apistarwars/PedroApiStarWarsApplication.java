@@ -1,9 +1,6 @@
 package com.b2w.apistarwars;
 
 
-
-import java.util.Optional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,18 +32,17 @@ public class PedroApiStarWarsApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		swapi.TestaSWAPI();
+		geraBanco();
 		
-		if(planetrepo.count() == 0) {
-			planetrepo.save(new Planeta("Teste","Teste","Teste", "Teste"));
-		}
-		
+	}
+	
+	public void geraBanco() {
+		Planeta planeta;
 		LOGGER.info("Encontrando planetas ou gerando uma galáxia muito, muito distante...");
 		LOGGER.info("-------------------------------");
-		
-		Optional<Planeta> obj = planetrepo.findById("Teste");
-		if(obj.isPresent()) {
-			planetrepo.deleteById(obj.get().getId());
+		if(planetrepo.count() == 0) {
+			planeta = planetrepo.save(new Planeta());
+			planetrepo.deleteById(planeta.getId());
 		}
-
 	}
 }

@@ -17,11 +17,9 @@ public class PlanetaService {
 	private PlanetaRepository repo;
 	
 	public Planeta insert(Planeta obj) {
-		
-			if(repo.findById(obj.getId()).isPresent())
-				throw new BadRequest("Id já existe!!");
-			else
-				return repo.save(obj);
+		verificaConteudo(obj);
+		geraId(obj);
+		return repo.save(obj);
 	}
 	
 	public List<Planeta> findAll(){
@@ -41,8 +39,23 @@ public class PlanetaService {
 		repo.delete(findById(id));
 	}
 	
-	public Planeta setIdNull(Planeta obj) {
-		obj.setId(null);
+	public Planeta geraId(Planeta obj) {
+		Planeta id = repo.save(new Planeta());     
+		obj.setId(id.getId());
 		return obj;
+	}
+	
+	public Planeta verificaConteudo(Planeta obj) {
+		if(obj.getNome().isEmpty()) {
+			throw new BadRequest("Campo nome vazio");
+		}
+		if(obj.getClima().isEmpty()) {
+			throw new BadRequest("Campo clima vazio");
+		}
+		if(obj.getTerreno().isEmpty()) {
+			throw new BadRequest("Campo terreno vazio");
+		}
+		return obj;
+		
 	}
 }

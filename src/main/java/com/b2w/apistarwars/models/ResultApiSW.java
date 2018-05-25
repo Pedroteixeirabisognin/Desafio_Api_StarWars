@@ -14,7 +14,7 @@ public class ResultApiSW {
 	}
 
 
-	public ResultApiSW(List<PlanetaApiSW> results) {
+	public ResultApiSW(List<PlanetaApiSW> results, String name) {
 		this.results = results;
 	}
 

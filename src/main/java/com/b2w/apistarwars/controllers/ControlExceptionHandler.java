@@ -26,7 +26,7 @@ public class ControlExceptionHandler {
 	public ResponseEntity<StandardError> badRequest(BadRequest e,HttpServletRequest request){
 		
 		HttpStatus status = HttpStatus.BAD_REQUEST;
-		StandardError err = new StandardError(System.currentTimeMillis(), status.value(), "Id inválida", e.getMessage(), request.getRequestURI());
+		StandardError err = new StandardError(System.currentTimeMillis(), status.value(), "Requisição inválida", e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
 }
