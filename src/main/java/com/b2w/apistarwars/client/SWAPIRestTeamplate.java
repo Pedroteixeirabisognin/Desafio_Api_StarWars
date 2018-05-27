@@ -31,12 +31,17 @@ public class SWAPIRestTeamplate {
 		
 	}
 	public void TestaSWAPI() {
-					
-    	    ResponseEntity<ResultApiSW> testaApi = geraRestTeamplate().exchange(url, HttpMethod.GET,geraHeader(),ResultApiSW.class);
+		
+		try{
+			ResponseEntity<ResultApiSW>	testaApi = geraRestTeamplate().exchange(url, HttpMethod.GET,geraHeader(),ResultApiSW.class);
+		    if(testaApi != null) {
+		      	LOGGER.info("SWAPI está online");
+		    }
+		}catch (Exception e) {
+			LOGGER.info("SWAPI está offline");
+			
+		}
 
-	        if(testaApi != null) {
-	        	LOGGER.info("SWAPI está online");
-	        }
 	        
 	}
 	public ResponseEntity<ResultApiSW> RetornaAparicoes() {

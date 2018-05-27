@@ -2,7 +2,6 @@ package com.b2w.apistarwars.models;
 
 import java.io.Serializable;
 
-
 import org.springframework.data.mongodb.core.mapping.Document;
 
 

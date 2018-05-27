@@ -44,8 +44,8 @@ public class PlanetaController {
 		return ResponseEntity.ok().body(insereAparicao(service.findAll()));
 	}
 	
-	@GetMapping(value="/buscaid")
-	public ResponseEntity<PlanetaResponse> encontraPorID(@RequestParam(value="id", defaultValue="") String id){
+	@GetMapping(value="/{id}")
+	public ResponseEntity<PlanetaResponse> encontraPorID(@PathVariable("id") String id){
 		Planeta planeta = service.findById(id);
 		List<PlanetaApiSW> result = swapi.RetornaAparicoes().getBody().getResults(); 
 		return ResponseEntity.ok().body(new PlanetaResponse(planeta.getId(),planeta.getNome(),planeta.getClima(),planeta.getTerreno(),encontraAparicao(result, planeta)));
@@ -80,7 +80,6 @@ public class PlanetaController {
 	private int encontraAparicao(List<PlanetaApiSW> result,Planeta planeta) {
 		
 		for(PlanetaApiSW y: result ) {
-			System.out.println(y.getName());
 			if(planeta.getNome().equals(y.getName())) {
 				
 				return y.getFilms().size();

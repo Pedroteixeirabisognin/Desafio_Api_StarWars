@@ -36,7 +36,7 @@ public class PedroApiStarWarsApplicationTests {
 	private int port;
 	
 	RestTemplate rest;
-	
+		
 	@Before
 	public void setUp() {
 		rest = new RestTemplate();
@@ -45,44 +45,23 @@ public class PedroApiStarWarsApplicationTests {
 	@Test
 	public void testa_Insercao_Planeta() {
 		
-		Planeta planeta = new Planeta("Teste","Teste","Teste","Teste");
-		ResponseEntity<String> response = null;
-		response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
-		
-
+		Planeta planeta = new Planeta("Luke","Teste","Teste");
+		ResponseEntity<String> response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
 		Assert.assertEquals(201, response.getStatusCodeValue());
-		rest.delete(BASE_PATH + port +"/planetas/"+ "Teste");
+		rest.delete(response.getHeaders().getLocation());
 
 	}
-	@Test
-	public void testa_Insercao_Com_Mesmo_ID() {
 		
-		Planeta planeta = new Planeta("Teste","Teste","Teste", "Teste");
-		
-		try {
-
-			rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
-			rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
-			Assert.fail();
-		
-		}catch (Exception e) {
-			
-			Assert.assertEquals("400 null", e.getMessage() );
- 		}
-		rest.delete(BASE_PATH + port +"/planetas/"+ "Teste");
-
-	}
-	
 	@Test
 	public void testa_Busca_ID() {
 		
-		Planeta planeta = new Planeta("Teste","Teste","Teste", "Teste");
+		Planeta planeta = new Planeta("Léia","Teste", "Teste");
 		ResponseEntity<String>  response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
 
-		response = rest.getForEntity(BASE_PATH + port +"/planetas/buscaid?id=Teste", String.class);
-		Assert.assertEquals(200, response.getStatusCodeValue());
+		ResponseEntity<String>  respostaBusca = rest.getForEntity(response.getHeaders().getLocation(), String.class);
+		Assert.assertEquals(200, respostaBusca.getStatusCodeValue());
 		
-		rest.delete(BASE_PATH + port +"/planetas/"+ "Teste");
+		rest.delete(response.getHeaders().getLocation());
 
 	}
 	
@@ -102,13 +81,13 @@ public class PedroApiStarWarsApplicationTests {
 	@Test
 	public void testa_Busca_Nome() {
 		
-		Planeta planeta = new Planeta("Teste","Teste","Teste", "Teste");
+		Planeta planeta = new Planeta("Anakin","Teste","Teste", "Teste");
 		ResponseEntity<String>  response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
 
-		response = rest.getForEntity(BASE_PATH + port +"/planetas/buscanome?nome=Teste", String.class);
-		Assert.assertEquals(200, response.getStatusCodeValue());
+		ResponseEntity<String>  respostaBusca = rest.getForEntity(BASE_PATH + port +"/planetas/buscanome?nome=Anakin", String.class);
+		Assert.assertEquals(200, respostaBusca.getStatusCodeValue());
 		
-		rest.delete(BASE_PATH + port +"/planetas/"+ "Teste");
+		rest.delete(response.getHeaders().getLocation());
 
 	}
 	
@@ -145,11 +124,11 @@ public class PedroApiStarWarsApplicationTests {
         headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
 
         HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-		Planeta planeta = new Planeta("Teste","Teste","Teste", "Teste");
-		rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
+		Planeta planeta = new Planeta("Obi-Wan","Teste", "Teste");
+		ResponseEntity<String>  response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
 
-		ResponseEntity<String> response  = rest.exchange(BASE_PATH + port +"/planetas/"+ "Teste", HttpMethod.DELETE, entity , String.class,planeta);
-		Assert.assertEquals(204, response.getStatusCodeValue());
+		ResponseEntity<String> respostaBusca  = rest.exchange(response.getHeaders().getLocation().toString(), HttpMethod.DELETE, entity , String.class,planeta);
+		Assert.assertEquals(204, respostaBusca.getStatusCodeValue());
 
 	}
 
@@ -158,7 +137,6 @@ public class PedroApiStarWarsApplicationTests {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
-
         HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
 
         try {
