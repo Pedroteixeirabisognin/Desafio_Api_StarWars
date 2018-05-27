@@ -51,6 +51,72 @@ public class PedroApiStarWarsApplicationTests {
 		rest.delete(response.getHeaders().getLocation());
 
 	}
+	@Test
+	public void testa_Insercao_Nome_Vazio() {
+		
+		Planeta planeta = new Planeta("","Teste","Teste");
+		try {
+			rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
+		}catch (Exception e) {
+			 Assert.assertEquals("400 null", e.getMessage());
+		}
+
+	}
+	@Test
+	public void testa_Insercao_Clima_Vazio() {
+		
+		Planeta planeta = new Planeta("Darth Vader","","Teste");
+		try {
+			rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
+		}catch (Exception e) {
+			 Assert.assertEquals("400 null", e.getMessage());
+		}
+
+	}
+	@Test
+	public void testa_Insercao_Terreno_Vazio() {
+		
+		Planeta planeta = new Planeta("Yoda","Teste","");
+		try {
+			rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
+		}catch (Exception e) {
+			 Assert.assertEquals("400 null", e.getMessage());
+		}
+
+	}
+	@Test
+	public void testa_Insercao_Nome_NULL() {
+		
+		Planeta planeta = new Planeta(null,"Teste","Teste");
+		try {
+			rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
+		}catch (Exception e) {
+			 Assert.assertEquals("400 null", e.getMessage());
+		}
+
+	}
+	@Test
+	public void testa_Insercao_Clima_NULL() {
+		
+		Planeta planeta = new Planeta("Chewbacca",null,"Teste");
+		try {
+			rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
+		}catch (Exception e) {
+			 Assert.assertEquals("400 null", e.getMessage());
+		}
+
+	}
+	@Test
+	public void testa_Insercao_Terreno_NULL() {
+		
+		Planeta planeta = new Planeta("Han Solo","Teste",null);
+		try {
+			rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
+		}catch (Exception e) {
+			 Assert.assertEquals("400 null", e.getMessage());
+		}
+
+	}
 		
 	@Test
 	public void testa_Busca_ID() {
@@ -83,7 +149,6 @@ public class PedroApiStarWarsApplicationTests {
 		
 		Planeta planeta = new Planeta("Anakin","Teste","Teste", "Teste");
 		ResponseEntity<String>  response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
-
 		ResponseEntity<String>  respostaBusca = rest.getForEntity(BASE_PATH + port +"/planetas/buscanome?nome=Anakin", String.class);
 		Assert.assertEquals(200, respostaBusca.getStatusCodeValue());
 		
@@ -119,30 +184,32 @@ public class PedroApiStarWarsApplicationTests {
 	
 	@Test
 	public void testa_Deletar() {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
+ 
 
-        HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-		Planeta planeta = new Planeta("Obi-Wan","Teste", "Teste");
+        Planeta planeta = new Planeta("Obi-Wan","Teste", "Teste");
 		ResponseEntity<String>  response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
 
-		ResponseEntity<String> respostaBusca  = rest.exchange(response.getHeaders().getLocation().toString(), HttpMethod.DELETE, entity , String.class,planeta);
+		ResponseEntity<String> respostaBusca  = rest.exchange(response.getHeaders().getLocation().toString(), HttpMethod.DELETE, criaHeader() , String.class,planeta);
 		Assert.assertEquals(204, respostaBusca.getStatusCodeValue());
 
 	}
 
 	@Test
 	public void testa_Deletar_Sem_Existir_Id() {
+
+
+        try {
+			rest.exchange(BASE_PATH + port +"/planetas/"+ "Teste", HttpMethod.DELETE, criaHeader() , String.class);
+        }catch(Exception e) {
+			Assert.assertEquals("404 null", e.getMessage());
+        }
+	}
+	private HttpEntity<String> criaHeader() {
+		
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
         HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-
-        try {
-			rest.exchange(BASE_PATH + port +"/planetas/"+ "Teste", HttpMethod.DELETE, entity , String.class);
-        }catch(Exception e) {
-			Assert.assertEquals("404 null", e.getMessage());
-        }
+		return entity;
 	}
 }

@@ -46,14 +46,18 @@ public class PlanetaService {
 	}
 	
 	public Planeta verificaConteudo(Planeta obj) {
-		if(obj.getNome().isEmpty()) {
-			throw new BadRequest("Campo nome vazio");
-		}
-		if(obj.getClima().isEmpty()) {
-			throw new BadRequest("Campo clima vazio");
-		}
-		if(obj.getTerreno().isEmpty()) {
-			throw new BadRequest("Campo terreno vazio");
+		try {
+			if(obj.getNome().isEmpty() || obj.getNome().equals(null)) {
+				throw new BadRequest("Campo nome vazio");
+			}
+			if(obj.getClima().isEmpty()|| obj.getClima().equals(null)) {
+				throw new BadRequest("Campo clima vazio");
+			}
+			if(obj.getTerreno().isEmpty()|| obj.getTerreno().equals(null)) {
+				throw new BadRequest("Campo terreno vazio");
+			}
+		}catch (Exception e) {
+			throw new BadRequest("Campo não pode receber nulo");
 		}
 		return obj;
 		
