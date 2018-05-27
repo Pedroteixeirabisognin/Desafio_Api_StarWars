@@ -24,7 +24,12 @@ public class SWAPIRestTeamplate {
     String url;
     
 	protected static final Logger LOGGER = LoggerFactory.getLogger(PedroApiStarWarsApplication.class);
-
+	public RestTemplate geraRestTeamplate() {
+		
+		RestTemplate restTemplate = new RestTemplate();
+		return restTemplate;
+		
+	}
 	public void TestaSWAPI() {
 					
     	    ResponseEntity<ResultApiSW> testaApi = geraRestTeamplate().exchange(url, HttpMethod.GET,geraHeader(),ResultApiSW.class);
@@ -34,23 +39,10 @@ public class SWAPIRestTeamplate {
 	        }
 	        
 	}
-	public int RetornaAparicoes(String nomePlaneta) {
-		    
-    	try {
-    		
-    		ResponseEntity<ResultApiSW> response = geraRestTeamplate().exchange(url + "/?search=" + nomePlaneta , HttpMethod.GET,geraHeader(),ResultApiSW.class);
-
-    		if(nomePlaneta.equals(response.getBody().getResults().get(0).getName())){
-        		return response.getBody().getResults().get(0).getFilms().size();
-            }
-    		return 0;
-    	
-    	}catch(Exception e) {
-    		
-       		return 0;
-    	}
-	        
-	
+	public ResponseEntity<ResultApiSW> RetornaAparicoes() {
+   		
+    	ResponseEntity<ResultApiSW> response = geraRestTeamplate().exchange(url, HttpMethod.GET,geraHeader(),ResultApiSW.class);
+    	return response;
 	}
 	
 	public HttpEntity<String> geraHeader(){
@@ -63,23 +55,6 @@ public class SWAPIRestTeamplate {
 		return entity;
 	}
 	
-	public RestTemplate geraRestTeamplate() {
-		
-		RestTemplate restTemplate = new RestTemplate();
-		return restTemplate;
-		
-	}
-	//TESTE
-	public ResponseEntity<ResultApiSW> RetornaAparicoes2() {
-	    
-    		
-    		ResponseEntity<ResultApiSW> response = geraRestTeamplate().exchange(url, HttpMethod.GET,geraHeader(),ResultApiSW.class);
-    		return response;
-
-
-	        
-	
-	}
 }
 	    	
 

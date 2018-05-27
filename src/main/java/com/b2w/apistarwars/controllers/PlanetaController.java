@@ -41,19 +41,25 @@ public class PlanetaController {
 	
 	@GetMapping
 	public ResponseEntity<List<PlanetaResponse>> encontraTodos(){
-		//Testando caso de erro use insereAparicao, tire o 2
-		return ResponseEntity.ok().body(insereAparicao2(service.findAll()));
+		return ResponseEntity.ok().body(insereAparicao(service.findAll()));
 	}
 	
 	@GetMapping(value="/buscaid")
 	public ResponseEntity<PlanetaResponse> encontraPorID(@RequestParam(value="id", defaultValue="") String id){
 		Planeta planeta = service.findById(id);
-		return ResponseEntity.ok().body(new PlanetaResponse(planeta.getId(),planeta.getNome(),planeta.getClima(),planeta.getTerreno(),swapi.RetornaAparicoes(planeta.getNome())));
+		List<PlanetaApiSW> result = swapi.RetornaAparicoes().getBody().getResults(); 
+		return ResponseEntity.ok().body(new PlanetaResponse(planeta.getId(),planeta.getNome(),planeta.getClima(),planeta.getTerreno(),encontraAparicao(result, planeta)));
 	}
 	
 	@GetMapping(value="/buscanome")
 	public ResponseEntity<List<PlanetaResponse>> encontraPorNome(@RequestParam(value="nome", defaultValue="") String nome){
-		return ResponseEntity.ok().body(insereAparicao(service.findByNome(URL.decodeParam(nome))));
+		List<PlanetaResponse> resposta = new ArrayList<>();
+		List<PlanetaApiSW> result = swapi.RetornaAparicoes().getBody().getResults(); 
+		for(Planeta x: service.findByNome(URL.decodeParam(nome)) ) {
+			
+			resposta.add(new PlanetaResponse(x.getId(),x.getNome(),x.getClima(),x.getTerreno(),encontraAparicao(result,x)));
+		}
+		return ResponseEntity.ok().body(resposta);
 	}
 	
 	@DeleteMapping(value="/{id}")
@@ -61,37 +67,26 @@ public class PlanetaController {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
-	
-	public PlanetaResponse insereAparicao(Planeta planeta) {
-		return new PlanetaResponse(planeta.getId(),planeta.getNome(),planeta.getClima(),planeta.getTerreno(),swapi.RetornaAparicoes(planeta.getNome()));
-	}
-	
+
 	public List<PlanetaResponse> insereAparicao(List<Planeta> planetas) {
 		List<PlanetaResponse> resposta = new ArrayList<>();
-		planetas.forEach((x)->resposta.add(new PlanetaResponse(x.getId(),x.getNome(),x.getClima(),x.getTerreno(),swapi.RetornaAparicoes(x.getNome()))));
-		return resposta;
-	}
-	//Teste
-	public List<PlanetaResponse> insereAparicao2(List<Planeta> planetas) {
-		List<PlanetaResponse> resposta = new ArrayList<>();
-		List<PlanetaApiSW> result = swapi.RetornaAparicoes2().getBody().getResults(); 
+		List<PlanetaApiSW> result = swapi.RetornaAparicoes().getBody().getResults(); 
 		for(Planeta x: planetas ) {
 		
-			resposta.add(encontraAparicao(result,x));
+			resposta.add(new PlanetaResponse(x.getId(),x.getNome(),x.getClima(),x.getTerreno(),encontraAparicao(result,x)));
 		}
 		return resposta;
 	}
-	//Teste
-	private PlanetaResponse encontraAparicao(List<PlanetaApiSW> result,Planeta planeta) {
+	private int encontraAparicao(List<PlanetaApiSW> result,Planeta planeta) {
 		
 		for(PlanetaApiSW y: result ) {
 			System.out.println(y.getName());
 			if(planeta.getNome().equals(y.getName())) {
 				
-				return new PlanetaResponse(planeta.getId(),planeta.getNome(),planeta.getClima(),planeta.getTerreno(),y.getFilms().size());
+				return y.getFilms().size();
 			}
 		}	
-		return new PlanetaResponse(planeta.getId(),planeta.getNome(),planeta.getClima(),planeta.getTerreno(),0);
+		return 0;
 		
 	}
 	
