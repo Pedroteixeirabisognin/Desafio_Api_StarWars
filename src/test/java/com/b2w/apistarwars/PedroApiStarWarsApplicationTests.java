@@ -43,7 +43,7 @@ public class PedroApiStarWarsApplicationTests {
 	}
 	
 	@Test
-	public void testaInsercaoPlaneta() {
+	public void testa_Insercao_Planeta() {
 		
 		Planeta planeta = new Planeta("Teste","Teste","Teste","Teste");
 		ResponseEntity<String> response = null;
@@ -55,7 +55,7 @@ public class PedroApiStarWarsApplicationTests {
 
 	}
 	@Test
-	public void testaInsercaoComMesmoID() {
+	public void testa_Insercao_Com_Mesmo_ID() {
 		
 		Planeta planeta = new Planeta("Teste","Teste","Teste", "Teste");
 		
@@ -74,7 +74,7 @@ public class PedroApiStarWarsApplicationTests {
 	}
 	
 	@Test
-	public void testaBuscaID() {
+	public void testa_Busca_ID() {
 		
 		Planeta planeta = new Planeta("Teste","Teste","Teste", "Teste");
 		ResponseEntity<String>  response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
@@ -87,7 +87,7 @@ public class PedroApiStarWarsApplicationTests {
 	}
 	
 	@Test
-	public void testaBuscaIDSeNaoExiste() {
+	public void testa_Busca_ID_Se_Nao_Existe() {
 		
 		try {
 
@@ -100,7 +100,7 @@ public class PedroApiStarWarsApplicationTests {
 	}
 	
 	@Test
-	public void testaBuscaNome() {
+	public void testa_Busca_Nome() {
 		
 		Planeta planeta = new Planeta("Teste","Teste","Teste", "Teste");
 		ResponseEntity<String>  response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
@@ -113,7 +113,7 @@ public class PedroApiStarWarsApplicationTests {
 	}
 	
 	@Test
-	public void testaBuscaNomeSeNaoExiste() {
+	public void testa_Busca_Nome_Se_Nao_Existe() {
 
 			ResponseEntity<String> response = rest.getForEntity(BASE_PATH + port +"/planetas/buscanome?nome=Teste", String.class);
 			Assert.assertEquals(200, response.getStatusCodeValue());
@@ -121,7 +121,7 @@ public class PedroApiStarWarsApplicationTests {
 	}
 	
 	@Test
-	public void testaBuscaTodos() {
+	public void testa_Busca_Todos() {
 		
 		Planeta planeta1 = new Planeta("Teste1","Teste","Teste", "Teste");
 		Planeta planeta2 = new Planeta("Teste2","Teste","Teste", "Teste");
@@ -139,7 +139,7 @@ public class PedroApiStarWarsApplicationTests {
 	}
 	
 	@Test
-	public void testaDeletar() {
+	public void testa_Deletar() {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
@@ -154,7 +154,7 @@ public class PedroApiStarWarsApplicationTests {
 	}
 
 	@Test
-	public void testaDeletarSemExistirId() {
+	public void testa_Deletar_Sem_Existir_Id() {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");

@@ -18,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.b2w.apistarwars.client.SWAPIRestTeamplate;
 import com.b2w.apistarwars.models.Planeta;
+import com.b2w.apistarwars.models.PlanetaApiSW;
 import com.b2w.apistarwars.models.PlanetaResponse;
 import com.b2w.apistarwars.services.PlanetaService;
 import com.b2w.apistarwars.util.URL;
@@ -34,28 +35,25 @@ public class PlanetaController {
 	
 	@PostMapping
 	public ResponseEntity<Void> inserePlaneta(@RequestBody Planeta planeta){
-		planeta = service.insert(planeta);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(planeta.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(service.insert(planeta).getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	
 	@GetMapping
 	public ResponseEntity<List<PlanetaResponse>> encontraTodos(){
-		List<Planeta> planetas = service.findAll();
-		return ResponseEntity.ok().body(insereAparicao(planetas));
+		//Testando caso de erro use insereAparicao, tire o 2
+		return ResponseEntity.ok().body(insereAparicao2(service.findAll()));
 	}
 	
 	@GetMapping(value="/buscaid")
 	public ResponseEntity<PlanetaResponse> encontraPorID(@RequestParam(value="id", defaultValue="") String id){
 		Planeta planeta = service.findById(id);
-		return ResponseEntity.ok().body(insereAparicao(planeta));
+		return ResponseEntity.ok().body(new PlanetaResponse(planeta.getId(),planeta.getNome(),planeta.getClima(),planeta.getTerreno(),swapi.RetornaAparicoes(planeta.getNome())));
 	}
 	
 	@GetMapping(value="/buscanome")
 	public ResponseEntity<List<PlanetaResponse>> encontraPorNome(@RequestParam(value="nome", defaultValue="") String nome){
-		nome = URL.decodeParam(nome);
-		List<Planeta> planetas = service.findByNome(nome);
-		return ResponseEntity.ok().body(insereAparicao(planetas));
+		return ResponseEntity.ok().body(insereAparicao(service.findByNome(URL.decodeParam(nome))));
 	}
 	
 	@DeleteMapping(value="/{id}")
@@ -65,8 +63,7 @@ public class PlanetaController {
 	}
 	
 	public PlanetaResponse insereAparicao(Planeta planeta) {
-		PlanetaResponse resposta = new PlanetaResponse(planeta.getId(),planeta.getNome(),planeta.getClima(),planeta.getTerreno(),swapi.RetornaAparicoes(planeta.getNome()));
-		return resposta;
+		return new PlanetaResponse(planeta.getId(),planeta.getNome(),planeta.getClima(),planeta.getTerreno(),swapi.RetornaAparicoes(planeta.getNome()));
 	}
 	
 	public List<PlanetaResponse> insereAparicao(List<Planeta> planetas) {
@@ -74,4 +71,28 @@ public class PlanetaController {
 		planetas.forEach((x)->resposta.add(new PlanetaResponse(x.getId(),x.getNome(),x.getClima(),x.getTerreno(),swapi.RetornaAparicoes(x.getNome()))));
 		return resposta;
 	}
+	//Teste
+	public List<PlanetaResponse> insereAparicao2(List<Planeta> planetas) {
+		List<PlanetaResponse> resposta = new ArrayList<>();
+		List<PlanetaApiSW> result = swapi.RetornaAparicoes2().getBody().getResults(); 
+		for(Planeta x: planetas ) {
+		
+			resposta.add(encontraAparicao(result,x));
+		}
+		return resposta;
+	}
+	//Teste
+	private PlanetaResponse encontraAparicao(List<PlanetaApiSW> result,Planeta planeta) {
+		
+		for(PlanetaApiSW y: result ) {
+			System.out.println(y.getName());
+			if(planeta.getNome().equals(y.getName())) {
+				
+				return new PlanetaResponse(planeta.getId(),planeta.getNome(),planeta.getClima(),planeta.getTerreno(),y.getFilms().size());
+			}
+		}	
+		return new PlanetaResponse(planeta.getId(),planeta.getNome(),planeta.getClima(),planeta.getTerreno(),0);
+		
+	}
+	
 }
