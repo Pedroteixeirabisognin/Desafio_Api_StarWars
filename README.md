@@ -91,12 +91,12 @@ http://localhost:8080/planetas/5afcf2bf1d5bad0100e51bda
 
 &nbsp;&nbsp;&nbsp;&nbsp;Depois basta copiar o código gerado e inserir no final do endpoint informado acima o ""/planetas/buscanome?nome=".
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ex:
+&nbsp;&nbsp;&nbsp;&nbsp;Ex:
 http://localhost:8080/planetas/buscanome?nome=Yavin%20IV
 
 #### <dd><a name="deleta">V. Deletando um planeta:</a></dd>
 
 &nbsp;&nbsp;&nbsp;&nbsp;Para deletar um planeta basta fazer uma solicitação delete para o endpoint "/planetas/" indicando a ID do planeta no final do endpoint.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ex: http://localhost:8080/planetas/1
+&nbsp;&nbsp;&nbsp;&nbsp;Ex: http://localhost:8080/planetas/1
 </dl>
