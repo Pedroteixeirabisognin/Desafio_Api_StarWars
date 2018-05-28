@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
 import com.b2w.apistarwars.exception.BadRequest;
 import com.b2w.apistarwars.exception.ObjectNotFoundException;
 import com.b2w.apistarwars.models.StandardError;
@@ -29,4 +28,5 @@ public class ControlExceptionHandler {
 		StandardError err = new StandardError(System.currentTimeMillis(), status.value(), "Requisição inválida", e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
+
 }
