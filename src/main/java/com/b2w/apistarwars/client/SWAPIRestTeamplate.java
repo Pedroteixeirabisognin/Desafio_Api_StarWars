@@ -6,7 +6,6 @@ import java.util.Arrays;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -20,8 +19,7 @@ import com.b2w.apistarwars.models.ResultApiSW;
 @Service
 public class SWAPIRestTeamplate {
 	
-    @Value("${apiSWAPI}")
-    String url;
+    String url = "https://swapi.co/api/planets/";
     
 	protected static final Logger LOGGER = LoggerFactory.getLogger(PedroApiStarWarsApplication.class);
 	public RestTemplate geraRestTeamplate() {
@@ -29,19 +27,6 @@ public class SWAPIRestTeamplate {
 		RestTemplate restTemplate = new RestTemplate();
 		return restTemplate;
 		
-	}
-	public void TestaSWAPI() {
-		
-		try{
-			ResponseEntity<ResultApiSW>	testaApi = geraRestTeamplate().exchange(url, HttpMethod.GET,geraHeader(),ResultApiSW.class);
-		    if(testaApi != null) {
-		      	LOGGER.info("SWAPI está online");
-		    }
-		}catch (Exception e) {
-			LOGGER.info("SWAPI está offline");
-		}
-
-	        
 	}
 	public ResponseEntity<ResultApiSW> RetornaAparicoes() {
    		

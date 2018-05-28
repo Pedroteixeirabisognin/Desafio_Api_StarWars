@@ -8,8 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
-import com.b2w.apistarwars.client.SWAPIRestTeamplate;
 import com.b2w.apistarwars.models.Planeta;
 import com.b2w.apistarwars.repository.PlanetaRepository;
 
@@ -19,9 +17,6 @@ public class PedroApiStarWarsApplication implements CommandLineRunner {
 	@Autowired
 	private PlanetaRepository planetrepo;
 	
-	@Autowired
-	private SWAPIRestTeamplate swapi;
-
 	protected static final Logger LOGGER = LoggerFactory.getLogger(PedroApiStarWarsApplication.class);
 
 	public static void main(String[] args) {
@@ -31,7 +26,6 @@ public class PedroApiStarWarsApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		swapi.TestaSWAPI();
 		geraBanco();
 		
 	}
