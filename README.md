@@ -11,7 +11,17 @@
   <li><a href="#Tecnologias">Tecnologias utilizadas</a></li>
   <li><a href="#Config">Configurando a API</a></li>
   <li><a href="#Testes">Efetuando testes</a></li>
-  <li><a href="#Funcionalidades">Funcionalidades</a></li>
+  <li><a href="#Funcionalidades">Funcionalidades</a>
+    <ul>
+      <li><a href="#Insere">Inserindo um planeta</a></li>
+      <li><a href="#Lista">Listando todos os planetas</a></li>
+      <li><a href="#buscaid">Fazendo busca por ID</a></li>
+      <li><a href="#buscanome">Fazendo busca por NOME</a></li>
+      <li><a href="#deleta">Deletando um planeta</a></li>
+    </ul>
+  </li>
+
+   
 </ul> 
 
 ### <a name="Sobre">Sobre o projeto</a> 
@@ -37,7 +47,7 @@ Com o Eclipse aberto, ir em src/test/Java, escolher a parte do teste que deseja 
 
 ### <a name="Funcionalidades">Funcionalidades</a> 
 
-#### Inserindo um planeta: 
+#### <a name="Insere">Inserindo um planeta:</a>  
 
 Para inserir um planeta deve ser feita uma requisição post em json para o endpoint "/planetas".
 
@@ -52,21 +62,21 @@ http://localhost:8080/planetas
 ```
 Será criado um novo planeta no banco de dados ao qual a ID será gerada automaticamente, não importando se o usuário setar uma id na hora da inserção. 
 
-#### Listando todos os planetas:
+#### <a name="Lista">Listando todos os planetas:</a> 
 
 Para listar todos os planetas basta fazer uma solicitação get para o endpoint "/planetas".
 
 Ex:
 http://localhost:8080/planetas
 
-#### Fazendo busca por ID:
+#### <a name="buscaid">Fazendo busca por ID:</a>
 
 Para fazer uma busca por id você deverá fazer uma solicitação get para o endpoint "/planetas/" junto com a id que você quer pesquisar. 
 
 Ex:
 http://localhost:8080/planetas/5afcf2bf1d5bad0100e51bda
 
-#### Fazendo busca por NOME:
+#### <a name="buscanome">Fazendo busca por NOME:</a>
 
 Para fazer uma busca por id você deverá fazer uma solicitação get para o endpoint "/planetas/buscanome?nome=" junto com o nome codificado que você quer pesquisar. 
 
@@ -75,3 +85,12 @@ Para codificar o valor que você quer, você pode abrir seu navegador, ir em fer
 <p>
   <img src="img/Exemplo.png"/> 
 </p>
+
+Depois basta copiar o código gerado e inserir no final do endpoint informado acima o ""/planetas/buscanome?nome=".
+Ex:
+http://localhost:8080/planetas/buscanome?nome=Yavin%20IV
+
+#### <a name="deleta">Deletando um planeta:</a>
+Para deletar um planeta basta fazer uma solicitação delete para o endpoint "/planetas/" indicando a ID do planeta no final do endpoint.
+Ex:
+http://localhost:8080/planetas/1
