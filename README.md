@@ -24,15 +24,15 @@
 
 <dl>
   
-### <dt><a name="Sobre">1. Sobre o projeto</a></dt> 
+### <a name="Sobre">1. Sobre o projeto</a> 
 
 &nbsp;&nbsp;&nbsp;&nbsp;O objetivo deste projeto é criar uma API rest que armazenará dados como nome de um planeta, clima e terreno. Retornando também a quantidade de aparições de cada planeta nos filmes de Star Wars registrada na API SWAPI. Esse projeto será consumido por um jogo criado pela B2W que aproveitará das informações da franquia.
 
-### <dt><a name="Tecnologias">2.Tecnologias utilizadas</a></dt> 
+### <a name="Tecnologias">2.Tecnologias utilizadas</a> 
 &nbsp;&nbsp;&nbsp;&nbsp;Para o presente projeto foi utilizado a linguagem Java na sua versão 8, Spring Boot 2.0 e a IDE Eclipse modificada para o framework Spring Boot(Spring Tools Suite). 
 Para a persistência dos dados foi utilizado o banco de dados não relacional MongoDB e para testes da api o Postman junto com o framework  JUNIT.
 
-### <dt><a name="Config">3.Configurando a API</a></dt>  
+### <a name="Config">3.Configurando a API</a>  
 &nbsp;&nbsp;&nbsp;&nbsp;Para utilizar o projeto deverá ser instalado o <a href="http://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html">Java SDK 8</a>, o Eclipse, 
 preferencialmente modificado para o Spring Boot(<a href="https://spring.io/tools/sts/all">Spring Tools Suite</a>) e o 
 <a href="https://www.mongodb.com/download-center?jmp=nav#community">MongoDB Community Server</a> baseado em seu sistema operacional.
@@ -42,13 +42,13 @@ executar o mongoDB e dar Run em Spring Boot App no Eclipse.
 
 &nbsp;&nbsp;&nbsp;&nbsp;Pronto, a API já estará funcionando, ela gera automaticamente o banco vazio no MongoDB. Caso ocorra algum problema da porta, você poderá entrar em application.properties e mudar server.port para alguma outra porta que desejar.
 
-### <dt><a name="Testes">4.Efetuando testes</a></dt>  
+### <a name="Testes">4.Efetuando testes</a>  
 
 &nbsp;&nbsp;&nbsp;&nbsp;Com o Eclipse aberto, ir em src/test/Java, escolher a parte do teste que deseja efetuar e dar run com JUNIT.
 
-### <dt><a name="Funcionalidades">5.Funcionalidades</a></dt>
+### <a name="Funcionalidades">5.Funcionalidades</a>
 
-#### <dd><a name="Insere">I. Inserindo um planeta:</a></dd>  
+#### <a name="Insere">I. Inserindo um planeta:</a>  
 
 &nbsp;&nbsp;&nbsp;&nbsp;Para inserir um planeta deve ser feita uma requisição post em json para o endpoint "/planetas".
 
@@ -63,7 +63,7 @@ http://localhost:8080/planetas
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;Será criado um novo planeta no banco de dados ao qual a ID será gerada automaticamente, não importando se o usuário setar uma id na hora da inserção. Se for inserido um nome, clima ou terreno com caractere vazio ou null na API, ela retornara o erro 400 de requisição inválida. Um planeta que não apareceu nos filmes também pode ser criado, porém seu numero de aparições será automaticamente 0.
 
-#### <dd><a name="Lista">II. Listando todos os planetas:</a></dd>
+#### <a name="Lista">II. Listando todos os planetas:</a>
 
 &nbsp;&nbsp;&nbsp;&nbsp;Para listar todos os planetas basta fazer uma solicitação get para o endpoint "/planetas".
 
@@ -72,7 +72,7 @@ http://localhost:8080/planetas
 
 &nbsp;&nbsp;&nbsp;&nbsp;Será retornado a id dos planetas, seu nome, seu clima, terreno e aparições em filmes no formato json. As aparições dos planetas são atualizadas a cada solicitação get, para caso haja alguma alteração no banco de dados do SWAPI ele retorne as aparições atualizadas. 
 
-#### <dd><a name="buscaid">III. Fazendo busca por ID:</a></dd>
+#### <a name="buscaid">III. Fazendo busca por ID:</a>
 
 &nbsp;&nbsp;&nbsp;&nbsp;Para fazer uma busca por id você deverá fazer uma solicitação get para o endpoint "/planetas/" junto com a id que você quer pesquisar. 
 
@@ -81,7 +81,7 @@ http://localhost:8080/planetas/5afcf2bf1d5bad0100e51bda
 
 &nbsp;&nbsp;&nbsp;&nbsp;Caso seja inserida uma id inválida, será retornado o erro 404 não encontrado. 
 
-#### <dd><a name="buscanome">IV. Fazendo busca por NOME:</a></dd>
+#### <a name="buscanome">IV. Fazendo busca por NOME:</a>
 
 &nbsp;&nbsp;&nbsp;&nbsp;Para fazer uma busca por nome você deverá fazer uma solicitação get para o endpoint "/planetas/buscanome?nome=" junto com o nome codificado que você quer pesquisar. 
 
@@ -96,11 +96,11 @@ http://localhost:8080/planetas/5afcf2bf1d5bad0100e51bda
 &nbsp;&nbsp;&nbsp;&nbsp;Ex:
 http://localhost:8080/planetas/buscanome?nome=Yavin%20IV
 
-#### <dd><a name="deleta">V. Deletando um planeta:</a></dd>
+#### <a name="deleta">V. Deletando um planeta:</a>
 
 &nbsp;&nbsp;&nbsp;&nbsp;Para deletar um planeta basta fazer uma solicitação delete para o endpoint "/planetas/" indicando a ID do planeta no final do endpoint.
 
 &nbsp;&nbsp;&nbsp;&nbsp;Ex: http://localhost:8080/planetas/1
 
 &nbsp;&nbsp;&nbsp;&nbsp;Caso esse planeta não exista ele retornará o erro 404 não encontrado.
-</dl>
+
