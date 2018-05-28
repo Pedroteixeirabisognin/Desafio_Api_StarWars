@@ -16,17 +16,17 @@ public class PlanetaService {
 	@Autowired
 	private PlanetaRepository repo;
 	
-	public Planeta insert(Planeta obj) {
+	public Planeta insere(Planeta obj) {
 		verificaConteudo(obj);
 		geraId(obj);
 		return repo.save(obj);
 	}
 	
-	public List<Planeta> findAll(){
+	public List<Planeta> encontraTodos(){
 		return repo.findAll();
 	}
 	
-	public Planeta findById(String id) {
+	public Planeta encontraPorId(String id) {
 		Optional<Planeta> obj = repo.findById(id);
 		return  obj.orElseThrow(() -> new ObjectNotFoundException("Id não encontrada!!"));
 	}
@@ -35,8 +35,8 @@ public class PlanetaService {
 		return repo.findByNomeContaining(nome);
 	}
 	
-	public void delete(String id) {
-		repo.delete(findById(id));
+	public void deleta(String id) {
+		repo.delete(encontraPorId(id));
 	}
 	
 	public Planeta geraId(Planeta obj) {

@@ -35,18 +35,18 @@ public class PlanetaController {
 	
 	@PostMapping
 	public ResponseEntity<Void> inserePlaneta(@RequestBody Planeta planeta){
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(service.insert(planeta).getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(service.insere(planeta).getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	
 	@GetMapping
 	public ResponseEntity<List<PlanetaResponse>> encontraTodos(){
-		return ResponseEntity.ok().body(insereAparicao(service.findAll()));
+		return ResponseEntity.ok().body(insereAparicao(service.encontraTodos()));
 	}
 	
 	@GetMapping(value="/{id}")
 	public ResponseEntity<PlanetaResponse> encontraPorID(@PathVariable("id") String id){
-		Planeta planeta = service.findById(id);
+		Planeta planeta = service.encontraPorId(id);
 		List<PlanetaApiSW> result = swapi.RetornaAparicoes().getBody().getResults(); 
 		return ResponseEntity.ok().body(new PlanetaResponse(planeta.getId(),planeta.getNome(),planeta.getClima(),planeta.getTerreno(),encontraAparicao(result, planeta)));
 	}
@@ -64,7 +64,7 @@ public class PlanetaController {
 	
 	@DeleteMapping(value="/{id}")
 	public ResponseEntity<Void> deletaPlaneta(@PathVariable String id){
-		service.delete(id);
+		service.deleta(id);
 		return ResponseEntity.noContent().build();
 	}
 

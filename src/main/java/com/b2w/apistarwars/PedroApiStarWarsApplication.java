@@ -25,9 +25,9 @@ public class PedroApiStarWarsApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-
-		geraBanco();
 		
+		geraBanco();
+	
 	}
 	
 	public void geraBanco() {
