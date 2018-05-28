@@ -52,7 +52,7 @@ executar o mongoDB e dar Run em Spring Boot App no Eclipse.
 
 &nbsp;&nbsp;&nbsp;&nbsp;Para inserir um planeta deve ser feita uma requisição post em json para o endpoint "/planetas".
 
-Ex:
+&nbsp;&nbsp;&nbsp;&nbsp;Ex:
 http://localhost:8080/planetas
 ```JSON
 {
@@ -67,7 +67,7 @@ http://localhost:8080/planetas
 
 &nbsp;&nbsp;&nbsp;&nbsp;Para listar todos os planetas basta fazer uma solicitação get para o endpoint "/planetas".
 
-Ex:
+&nbsp;&nbsp;&nbsp;&nbsp;Ex:
 http://localhost:8080/planetas
 
 &nbsp;&nbsp;&nbsp;&nbsp;Será retornado a id dos planetas, nome, clima, terreno e aparições em filmes no formato json.
@@ -76,7 +76,7 @@ http://localhost:8080/planetas
 
 &nbsp;&nbsp;&nbsp;&nbsp;Para fazer uma busca por id você deverá fazer uma solicitação get para o endpoint "/planetas/" junto com a id que você quer pesquisar. 
 
-Ex:
+&nbsp;&nbsp;&nbsp;&nbsp;Ex:
 http://localhost:8080/planetas/5afcf2bf1d5bad0100e51bda
 
 #### <dd><a name="buscanome">IV. Fazendo busca por NOME:</a></dd>
@@ -90,12 +90,13 @@ http://localhost:8080/planetas/5afcf2bf1d5bad0100e51bda
 </p>
 
 &nbsp;&nbsp;&nbsp;&nbsp;Depois basta copiar o código gerado e inserir no final do endpoint informado acima o ""/planetas/buscanome?nome=".
-Ex:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ex:
 http://localhost:8080/planetas/buscanome?nome=Yavin%20IV
 
 #### <dd><a name="deleta">V. Deletando um planeta:</a></dd>
 
 &nbsp;&nbsp;&nbsp;&nbsp;Para deletar um planeta basta fazer uma solicitação delete para o endpoint "/planetas/" indicando a ID do planeta no final do endpoint.
-Ex:
-http://localhost:8080/planetas/1
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ex: http://localhost:8080/planetas/1
 </dl>
