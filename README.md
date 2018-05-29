@@ -1,6 +1,6 @@
-<p>
+<div align="center">
   <img src="img/sw.jpg"/> 
-</p>
+</div>
 
 # DESAFIO API STAR WARS B2W - PEDRO TEIXEIRA BISOGNIN
 
@@ -20,6 +20,8 @@
       <li><a href="#deleta">Deletando um planeta</a></li>
     </ol>
   </li>
+  <li><a href="#final">Considerações finais</a>
+
 </ol> 
 
 <dl>
@@ -112,7 +114,11 @@ http://localhost:8080/planetas/buscanome?nome=Yavin%20IV
 
 &nbsp;&nbsp;&nbsp;&nbsp;Caso esse planeta não exista ele retornará o erro 404 não encontrado.
 
+### <a name="final">6. Considerações finais</a>
 
-<img src="img/rodapé.jpg"/>
-  
+&nbsp;&nbsp;&nbsp;&nbsp;API criada e documentada por Pedro Teixeira Bisognin, espero que gostem e <b>que a força esteja com voces!!!</b>
+
+<div align="center">
+  <img src="img/rodapé.jpg"/>
+<div>  
 
