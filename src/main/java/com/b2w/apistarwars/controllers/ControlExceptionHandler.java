@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.b2w.apistarwars.exception.BadRequest;
 import com.b2w.apistarwars.exception.ObjectNotFoundException;
+import com.b2w.apistarwars.exception.ServiceUnavailable;
+
 import com.b2w.apistarwars.models.StandardError;
 
 @ControllerAdvice
@@ -29,4 +31,11 @@ public class ControlExceptionHandler {
 		return ResponseEntity.status(status).body(err);
 	}
 
+	@ExceptionHandler(ServiceUnavailable.class)
+	public ResponseEntity<StandardError> servicUnavailable(ServiceUnavailable e,HttpServletRequest request){
+		
+		HttpStatus status = HttpStatus.SERVICE_UNAVAILABLE;
+		StandardError err = new StandardError(System.currentTimeMillis(), status.value(), "Serviço Indisponível", e.getMessage(), request.getRequestURI());
+		return ResponseEntity.status(status).body(err);
+	}
 }

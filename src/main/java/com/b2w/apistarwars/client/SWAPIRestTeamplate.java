@@ -3,7 +3,6 @@ package com.b2w.apistarwars.client;
 
 import java.util.Arrays;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -13,7 +12,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
 import com.b2w.apistarwars.PedroApiStarWarsApplication;
+import com.b2w.apistarwars.exception.ServiceUnavailable;
 import com.b2w.apistarwars.models.ResultApiSW;
 
 @Service
@@ -29,9 +30,16 @@ public class SWAPIRestTeamplate {
 		
 	}
 	public ResponseEntity<ResultApiSW> RetornaAparicoes() {
+		
+		try {
+			
+			return geraRestTeamplate().exchange(url, HttpMethod.GET,geraHeader(),ResultApiSW.class);
    		
-    	ResponseEntity<ResultApiSW> response = geraRestTeamplate().exchange(url, HttpMethod.GET,geraHeader(),ResultApiSW.class);
-    	return response;
+		}catch(Exception e) {
+   			
+   			throw new ServiceUnavailable("SWAPI fora do ar");
+   		}
+   			 
 	}
 	
 	public HttpEntity<String> geraHeader(){
