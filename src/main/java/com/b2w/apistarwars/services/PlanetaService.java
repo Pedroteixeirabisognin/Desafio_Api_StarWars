@@ -13,12 +13,17 @@ import com.b2w.apistarwars.repository.PlanetaRepository;
 @Service
 public class PlanetaService {
 
-	@Autowired
+	
 	private PlanetaRepository repo;
+	
+	@Autowired
+	public PlanetaService(PlanetaRepository repo) {
+		this.repo = repo;
+	}
 	
 	public Planeta insere(Planeta obj) {
 		verificaConteudo(obj);
-		geraId(obj);
+		obj.setId(null);
 		return repo.save(obj);
 	}
 	
@@ -46,7 +51,7 @@ public class PlanetaService {
 	}
 	
 	public Planeta verificaConteudo(Planeta obj) {
-		try {
+		try {	
 			if(obj.getNome().isEmpty() || obj.getNome().equals(null)) {
 				throw new BadRequest("Campo nome vazio");
 			}
@@ -56,8 +61,9 @@ public class PlanetaService {
 			if(obj.getTerreno().isEmpty()|| obj.getTerreno().equals(null)) {
 				throw new BadRequest("Campo terreno vazio");
 			}
-		}catch (Exception e) {
-			throw new BadRequest("Campo não pode receber nulo");
+		}catch(Exception e) {
+			
+			throw new BadRequest("Erro ao inserir null");
 		}
 		return obj;
 		

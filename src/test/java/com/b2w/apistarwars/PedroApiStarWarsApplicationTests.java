@@ -147,7 +147,8 @@ public class PedroApiStarWarsApplicationTests {
 	@Test
 	public void testa_Busca_Nome() {
 		
-		Planeta planeta = new Planeta("Anakin","Teste","Teste", "Teste");
+		Planeta planeta = new Planeta("Anakin","Teste", "Teste");
+		
 		ResponseEntity<String>  response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
 		ResponseEntity<String>  respostaBusca = rest.getForEntity(BASE_PATH + port +"/planetas/buscanome?nome=Anakin", String.class);
 		Assert.assertEquals(200, respostaBusca.getStatusCodeValue());
@@ -167,10 +168,10 @@ public class PedroApiStarWarsApplicationTests {
 	@Test
 	public void testa_Busca_Todos() {
 		
-		Planeta planeta1 = new Planeta("Teste1","Teste","Teste", "Teste");
-		Planeta planeta2 = new Planeta("Teste2","Teste","Teste", "Teste");
-		Planeta planeta3 = new Planeta("Teste3","Teste","Teste", "Teste");
-		Planeta planeta4 = new Planeta("Teste4","Teste","Teste", "Teste");
+		Planeta planeta1 = new Planeta("Teste1","Teste", "Teste");
+		Planeta planeta2 = new Planeta("Teste2","Teste", "Teste");
+		Planeta planeta3 = new Planeta("Teste3","Teste", "Teste");
+		Planeta planeta4 = new Planeta("Teste4","Teste", "Teste");
 		List<Planeta>  planetas = new ArrayList<Planeta>();
 		planetas.add(planeta1);
 		planetas.add(planeta2);
