@@ -1,7 +1,5 @@
 package com.b2w.apistarwars.repository;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -44,7 +42,7 @@ public class PlanetaRepositoryTest {
     public void testa_criar_planeta() {
         
     	Planeta planeta = repository.save(new Planeta("R2","teste","teste"));
-        assertThat(!planeta.getId().isEmpty());
+        Assert.assertFalse(planeta.getId().isEmpty());
         repository.delete(planeta);
     }
 
@@ -52,7 +50,7 @@ public class PlanetaRepositoryTest {
     public void testa_buscar_por_nome() {
     	
     	List<Planeta> result = repository.findByNomeContaining("Boba Fett");
-    	assertThat(result).hasSize(1).extracting("nome").contains("Boba Fett");
+    	Assert.assertFalse(result.isEmpty());
     }
 
     @Test
@@ -67,7 +65,7 @@ public class PlanetaRepositoryTest {
       
     	List<Planeta> result = repository.findAll();
         
-    	assertThat(result).isNotEmpty();
+    	Assert.assertFalse(result.isEmpty());
     }
     
     @Test
@@ -76,8 +74,9 @@ public class PlanetaRepositoryTest {
     	List<Planeta> planeta = repository.findByNomeContaining("Lando");
     	repository.delete(planeta.get(0));
     	List<Planeta> response = repository.findByNomeContaining("Lando");
-    	assertThat(response).isEmpty();
-    	assertThat(planeta).isNotEmpty();
+    	Assert.assertTrue(response.isEmpty());
+
+    	Assert.assertFalse(planeta.isEmpty());
     	
     }
 }

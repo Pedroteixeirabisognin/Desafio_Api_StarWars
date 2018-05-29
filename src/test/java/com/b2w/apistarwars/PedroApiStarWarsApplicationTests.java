@@ -194,7 +194,6 @@ public class PedroApiStarWarsApplicationTests {
 		Assert.assertEquals(204, respostaBusca.getStatusCodeValue());
 
 	}
-
 	@Test
 	public void testa_Deletar_Sem_Existir_Id() {
 
