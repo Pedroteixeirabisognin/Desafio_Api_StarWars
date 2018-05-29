@@ -26,11 +26,6 @@ public class PedroApiStarWarsApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		geraBanco();
-	
-	}
-	
-	public void geraBanco() {
 		Planeta planeta;
 		LOGGER.info("Encontrando planetas ou gerando uma galáxia muito, muito distante...");
 		LOGGER.info("-------------------------------");
@@ -38,5 +33,7 @@ public class PedroApiStarWarsApplication implements CommandLineRunner {
 			planeta = planetrepo.save(new Planeta());
 			planetrepo.deleteById(planeta.getId());
 		}
+	
 	}
+
 }

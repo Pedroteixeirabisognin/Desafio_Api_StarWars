@@ -23,24 +23,19 @@ public class SWAPIRestTeamplate {
     String url = "https://swapi.co/api/planets/";
     
 	protected static final Logger LOGGER = LoggerFactory.getLogger(PedroApiStarWarsApplication.class);
+	
 	public RestTemplate geraRestTeamplate() {
-		
 		RestTemplate restTemplate = new RestTemplate();
 		return restTemplate;
-		
 	}
+	
 	public ResponseEntity<ResultApiSW> RetornaAparicoes() {
-		
 		try {
-			
 			return geraRestTeamplate().exchange(url, HttpMethod.GET,geraHeader(),ResultApiSW.class);
-   		
-		}catch(Exception e) {
-   			
+   		}catch(Exception e) {
    			throw new ServiceUnavailable("SWAPI fora do ar");
    		}
-   			 
-	}
+   	}
 	
 	public HttpEntity<String> geraHeader(){
 		
@@ -51,7 +46,6 @@ public class SWAPIRestTeamplate {
 		
 		return entity;
 	}
-	
 }
 	    	
 

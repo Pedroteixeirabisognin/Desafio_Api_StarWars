@@ -11,11 +11,11 @@ import com.b2w.apistarwars.models.ResultApiSW;
 
 
 public class SWAPIRestTeamplateTest {
-
     
     @Autowired
     SWAPIRestTeamplate rest;
-	@Before
+
+    @Before
 	public void setUp() {
 		rest = new SWAPIRestTeamplate();
 	}

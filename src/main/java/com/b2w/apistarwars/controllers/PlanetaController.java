@@ -78,15 +78,12 @@ public class PlanetaController {
 		return resposta;
 	}
 	private int encontraAparicao(List<PlanetaApiSW> result,Planeta planeta) {
-		
 		for(PlanetaApiSW y: result ) {
 			if(planeta.getNome().equals(y.getName())) {
-				
 				return y.getFilms().size();
 			}
 		}	
 		return 0;
-		
 	}
 	
 }
