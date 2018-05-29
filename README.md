@@ -112,3 +112,7 @@ http://localhost:8080/planetas/buscanome?nome=Yavin%20IV
 
 &nbsp;&nbsp;&nbsp;&nbsp;Caso esse planeta não exista ele retornará o erro 404 não encontrado.
 
+
+<img src="img/rodapé.jpg"/>
+  
+
