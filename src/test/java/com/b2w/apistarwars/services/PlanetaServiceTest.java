@@ -63,11 +63,30 @@ public class PlanetaServiceTest {
 	public void testa_Encontra_Por_ID() {
 		
 		Planeta planeta1 = new Planeta("TesteNovo","Teste", "Teste");
-		Optional<Planeta> planeta2 = 
+		
 		planeta1.setId("Teste");
-		when(repo.findById("Teste")).thenReturn(planeta2);
+		when(repo.findById("Teste")).thenReturn(planeta1);
 		
 		Planeta planetasRetorno = serv.encontraPorId("Teste");
 		Assert.assertEquals(planetasRetorno.get(0).getNome(), planeta1.getNome());
 	}*/
+	
+	@Test
+	public void testa_Listar_Por_Nome() {
+		
+		Planeta planeta1 = new Planeta("Star Destroyer 1","Teste", "Teste");
+		Planeta planeta2 = new Planeta("Star Destroyer 2","Teste", "Teste");
+		Planeta planeta3 = new Planeta("Star Destroyer 3","Teste", "Teste");
+		Planeta planeta4 = new Planeta("Star Destroyer 4","Teste", "Teste");
+		List<Planeta>  planetas = new ArrayList<Planeta>();
+		planetas.add(planeta1);
+		planetas.add(planeta2);
+		planetas.add(planeta3);
+		planetas.add(planeta4);
+		
+		when(repo.findByNomeContaining("Teste")).thenReturn(planetas);
+		
+		List<Planeta> planetasRetorno = serv.findByNome("Teste");
+		Assert.assertEquals(planetasRetorno.get(0).getNome(), planeta1.getNome());
+	}
 }
