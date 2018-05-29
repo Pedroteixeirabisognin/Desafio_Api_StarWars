@@ -40,13 +40,19 @@ preferencialmente modificado para o Spring Boot(<a href="https://spring.io/tools
 &nbsp;&nbsp;&nbsp;&nbsp;Após isso, efetuar o download do projeto e inserir o mesmo no diretorio raiz do seu workspace do Eclipse, importar um novo projeto Maven pelo Eclipse, esperar o Maven baixar as dependências,
 executar o mongoDB e dar Run em Spring Boot App no Eclipse.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Pronto, a API já estará funcionando, ela gera automaticamente o banco vazio no MongoDB. Caso ocorra algum problema da porta, você poderá entrar em application.properties e mudar server.port para alguma outra porta que desejar.
+&nbsp;&nbsp;&nbsp;&nbsp;Pronto, a API já estará funcionando se o SWAPI estiver online, caso contrário a API retornará um erro 503 indicando que o SWAPI está fora do ar.
+
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Obs1:</b> A propria API gera automaticamente o banco vazio no MongoDB caso não exista. 
+
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Obs2:</b> Se ocorrer algum problema da porta default, você poderá entrar em application.properties e mudar server.port para alguma outra porta que desejar.
 
 ### <a name="Testes">4.Efetuando testes</a>  
 
-&nbsp;&nbsp;&nbsp;&nbsp;Com o Eclipse aberto, ir em src/test/Java, escolher a parte do teste que deseja efetuar e dar run com JUNIT.
+&nbsp;&nbsp;&nbsp;&nbsp;Com o Eclipse aberto, ir em src/test/Java e rodar o projeto com JUNIT, o sistema efetuará alguns testes de integração e alguns testes unitários, retornando verde se tudo deu certo ou vermelho se algo deu errado.
 
 ### <a name="Funcionalidades">5.Funcionalidades</a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;Vejamos algumas funcionalidades da API, os exemplos estão considerando a porta padrão 8080:
 
 #### <a name="Insere">I. Inserindo um planeta:</a>  
 
@@ -61,7 +67,9 @@ http://localhost:8080/planetas
    "terrain": "jungle, rainforests"
 }
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;Será criado um novo planeta no banco de dados ao qual a ID será gerada automaticamente, não importando se o usuário setar uma id na hora da inserção. Se for inserido um nome, clima ou terreno com caractere vazio ou null na API, ela retornara o erro 400 de requisição inválida. Um planeta que não apareceu nos filmes também pode ser criado, porém seu numero de aparições será automaticamente 0.
+&nbsp;&nbsp;&nbsp;&nbsp;Será criado um novo planeta no banco de dados ao qual a ID será gerada automaticamente, não importando se o usuário setar uma id na hora da inserção. Se for inserido um nome, clima ou terreno com caractere vazio ou null na API, ela retornara o erro 400 de requisição inválida. 
+
+&nbsp;&nbsp;&nbsp;&nbsp;Um planeta que não apareceu nos filmes também pode ser criado, porém seu numero de aparições será automaticamente 0.
 
 #### <a name="Lista">II. Listando todos os planetas:</a>
 
