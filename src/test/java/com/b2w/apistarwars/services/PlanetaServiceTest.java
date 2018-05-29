@@ -25,8 +25,7 @@ public class PlanetaServiceTest {
 	public void setUp() {
 		repo = Mockito.mock(PlanetaRepository.class); 
 		serv = new PlanetaService(repo);
-		System.out.println(serv);
-		System.out.println(repo);
+
 	}
 	
 	@Test
@@ -59,17 +58,27 @@ public class PlanetaServiceTest {
 		Assert.assertEquals(planetasRetorno.get(0).getNome(), planeta1.getNome());
 	}
 	
-	/*@Test
+	@Test
 	public void testa_Encontra_Por_ID() {
 		
 		Planeta planeta1 = new Planeta("TesteNovo","Teste", "Teste");
-		
+		Optional<Planeta> planetaOpt = Optional.of(planeta1);
 		planeta1.setId("Teste");
-		when(repo.findById("Teste")).thenReturn(planeta1);
+		when(repo.findById(planeta1.getId())).thenReturn(planetaOpt);
 		
-		Planeta planetasRetorno = serv.encontraPorId("Teste");
-		Assert.assertEquals(planetasRetorno.get(0).getNome(), planeta1.getNome());
-	}*/
+		Planeta planetasRetorno = serv.encontraPorId(planeta1.getId());
+		Assert.assertEquals(planetaOpt.get(), planetasRetorno);
+	}
+	
+	@Test
+	public void testa_Encontra_Por_ID_Nao_Existente() {
+		
+		try {
+			serv.encontraPorId("");
+		}catch(Exception e) {
+			Assert.assertEquals("Id não encontrada!!", e.getMessage() );
+		}
+	}
 	
 	@Test
 	public void testa_Listar_Por_Nome() {
