@@ -67,7 +67,7 @@ public class PedroApiStarWarsApplicationTests {
 			 Assert.assertEquals("400 null", e.getMessage());
 		}
 	}
-	
+	 
 	@Test
 	public void testa_Insercao_Terreno_Vazio() {
 		Planeta planeta = new Planeta("Yoda","Teste","");

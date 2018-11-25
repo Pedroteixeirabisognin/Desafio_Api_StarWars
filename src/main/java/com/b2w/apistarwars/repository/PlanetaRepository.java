@@ -13,3 +13,4 @@ public interface PlanetaRepository extends MongoRepository<Planeta, String> {
 	List<Planeta> findByNomeContaining(String nome);
 	
 }
+ 

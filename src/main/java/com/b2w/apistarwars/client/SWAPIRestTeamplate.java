@@ -30,7 +30,7 @@ public class SWAPIRestTeamplate {
 	}
 	
 	public ResponseEntity<ResultApiSW> RetornaAparicoes() {
-		try {
+		try { 
 			return geraRestTeamplate().exchange(url, HttpMethod.GET,geraHeader(),ResultApiSW.class);
    		}catch(Exception e) {
    			throw new ServiceUnavailable("SWAPI fora do ar");

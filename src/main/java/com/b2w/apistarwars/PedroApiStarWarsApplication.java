@@ -18,7 +18,7 @@ public class PedroApiStarWarsApplication implements CommandLineRunner {
 	private PlanetaRepository planetrepo;
 	
 	protected static final Logger LOGGER = LoggerFactory.getLogger(PedroApiStarWarsApplication.class);
-
+ 
 	public static void main(String[] args) {
 		SpringApplication.run(PedroApiStarWarsApplication.class, args);
 	}

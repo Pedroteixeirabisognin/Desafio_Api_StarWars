@@ -26,3 +26,4 @@ public class SWAPIRestTeamplateTest {
     	Assert.assertNotNull(result);
      }
 }
+ 

@@ -77,6 +77,6 @@ public class PlanetaRepositoryTest {
     	Assert.assertTrue(response.isEmpty());
 
     	Assert.assertFalse(planeta.isEmpty());
-    	
+    	 
     }
 }

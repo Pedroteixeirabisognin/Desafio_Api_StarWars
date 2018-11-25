@@ -26,7 +26,7 @@ public class PlanetaService {
 		obj.setId(null);
 		return repo.save(obj);
 	}
-	
+	 
 	public List<Planeta> encontraTodos(){
 		return repo.findAll();
 	}

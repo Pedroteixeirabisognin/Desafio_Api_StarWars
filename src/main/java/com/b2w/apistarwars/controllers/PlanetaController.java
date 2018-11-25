@@ -90,7 +90,7 @@ public class PlanetaController {
 		}	
 		return 0;
 	}
-	
+	 
 	//A CADA UMA HORA BAIXA NOVAMENTE A LISTA DA API POIS A API TEM UM LIMITE DE SOLICITAÇÕES POR DIA
 	private List<PlanetaApiSW> implementaCache(List<PlanetaApiSW> result, Calendar horaInicial) {
 		Calendar atual = Calendar.getInstance(); 

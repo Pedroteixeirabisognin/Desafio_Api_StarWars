@@ -91,7 +91,7 @@ public class PlanetaServiceTest {
 		planetas.add(planeta4);
 		
 		when(repo.findByNomeContaining("Teste")).thenReturn(planetas);
-		
+		 
 		List<Planeta> planetasRetorno = serv.findByNome("Teste");
 		Assert.assertEquals(planetasRetorno.get(0).getNome(), planeta1.getNome());
 	}

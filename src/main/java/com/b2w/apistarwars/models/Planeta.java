@@ -30,7 +30,7 @@ public class Planeta implements Serializable {
 	@NotBlank
 	@JsonProperty(required = true)
 	private String terreno;
-
+ 
 	
 	public Planeta() {
 		super();

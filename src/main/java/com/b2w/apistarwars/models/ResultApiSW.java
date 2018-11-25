@@ -26,6 +26,6 @@ public class ResultApiSW {
 	public void setResults(List<PlanetaApiSW> results) {
 		this.results = results;
 	}
-	
+	 
 	
 }
