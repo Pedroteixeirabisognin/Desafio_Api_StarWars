@@ -38,14 +38,19 @@ Para a persistência dos dados foi utilizado o banco de dados não relacional Mo
 &nbsp;&nbsp;&nbsp;&nbsp;Para utilizar o projeto deverá ser instalado o <a href="http://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html">Java SDK 8</a>, o Eclipse, 
 preferencialmente modificado para o Spring Boot(<a href="https://spring.io/tools/sts/all">Spring Tools Suite</a>) e o 
 <a href="https://www.mongodb.com/download-center?jmp=nav#community">MongoDB Community Server</a> baseado em seu sistema operacional.
+&nbsp;&nbsp;&nbsp;&nbsp;Após isso Efetuar o download do projeto e inserir o mesmo no diretorio raiz do seu workspace do Eclipse.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Após isso, efetuar o download do projeto e inserir o mesmo no diretorio raiz do seu workspace do Eclipse, importar um novo projeto Maven pelo Eclipse, esperar o Maven baixar as dependências,
-executar o mongoDB e dar Run em Spring Boot App no Eclipse.
+#### &nbsp;&nbsp;&nbsp;&nbsp;NO MAVEN
+&nbsp;&nbsp;&nbsp;&nbsp;Primeiramente instalar o Apache Maven e setar suas variaveis de ambiente corretamente, acessar a pasta raiz
+do projeto pelo prompt, executar o comando "mvn package", aguardar baixar as dependências, aguardar executar os testes 
+automatizados e ao terminar de buildar o projeto acessar na pasta raiz a pasta "target" lá estará o jar responsavel pela api,
+basta executa-lo junto com o mongodb que a api estará rodando em segundo plano, utilize o postman para fazer testes mais facilmente.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Pronto, a API já estará funcionando se o SWAPI estiver online, caso contrário a API retornará um erro 503 indicando que o SWAPI está fora do ar.
+#### &nbsp;&nbsp;&nbsp;&nbsp;NO ECLIPSE
+&nbsp;&nbsp;&nbsp;&nbsp;Após importar o projeto, executar o mongoDB e dar Run em Spring Boot App no Eclipse.</br>
+&nbsp;&nbsp;&nbsp;&nbsp;Pronto, a API já estará funcionando se o SWAPI estiver online, caso contrário a API retornará um erro 503 indicando que o SWAPI está fora do ar.</br>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Obs1:</b> A propria API gera automaticamente o banco vazio no MongoDB caso não exista. 
-
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Obs1:</b> A propria API gera automaticamente o banco vazio no MongoDB caso não exista. </br>
 &nbsp;&nbsp;&nbsp;&nbsp;<b>Obs2:</b> Se ocorrer algum problema da porta default, você poderá entrar em application.properties e mudar server.port para alguma outra porta que desejar.
 
 ### <a name="Testes">4.Efetuando testes</a>  
