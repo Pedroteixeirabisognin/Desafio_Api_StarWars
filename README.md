@@ -64,9 +64,9 @@ executar o mongoDB e dar Run em Spring Boot App no Eclipse.
 http://localhost:8080/planetas
 ```JSON
 {
-   "name": "Yavin IV",
+   "nome": "Yavin IV",
    "clima": "Frio",
-   "terrain": "jungle, rainforests"
+   "terreno": "jungle, rainforests"
 }
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;Será criado um novo planeta no banco de dados ao qual a ID será gerada automaticamente, não importando se o usuário setar uma id na hora da inserção. Se for inserido um nome, clima ou terreno com caractere vazio ou null na API, ela retornara o erro 400 de requisição inválida. 
