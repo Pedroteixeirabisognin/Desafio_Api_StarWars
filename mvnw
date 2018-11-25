@@ -17,10 +17,10 @@
 # specific language governing permissions and limitations
 # under the License.
 # ----------------------------------------------------------------------------
-
+ 
 # ----------------------------------------------------------------------------
 # Maven2 Start Up Batch script
-#
+# 
 # Required ENV vars:
 # ------------------
 #   JAVA_HOME - location of a JDK home dir
