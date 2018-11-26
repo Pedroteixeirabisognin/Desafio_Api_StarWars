@@ -52,6 +52,7 @@ basta executa-lo junto com o mongodb que a api estará rodando em segundo plano,
 
 &nbsp;&nbsp;&nbsp;&nbsp;<b>Obs1:</b> A propria API gera automaticamente o banco vazio no MongoDB caso não exista. </br>
 &nbsp;&nbsp;&nbsp;&nbsp;<b>Obs2:</b> Se ocorrer algum problema da porta default, você poderá entrar em application.properties e mudar server.port para alguma outra porta que desejar.
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Obs3:</b> Para finalizar a execução do projeto buildado no maven abra o prompt, digite o comando "netstat -a -n -o" procure o processo que está utilizando a porta que você configurou ex: "8080", pegue sua Pid e digite "taskkill -f -im "NÚMERO DO PID"". </br>
 
 ### <a name="Testes">4.Efetuando testes</a>  
 
