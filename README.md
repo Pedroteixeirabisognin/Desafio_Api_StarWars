@@ -56,7 +56,7 @@ basta executa-lo junto com o mongodb que a api estará rodando em segundo plano,
 
 ### <a name="Testes">4.Efetuando testes</a>  
 
-&nbsp;&nbsp;&nbsp;&nbsp;Com o Eclipse aberto, ir em src/test/Java e rodar o projeto com JUNIT, o sistema efetuará alguns testes de integração e alguns testes unitários, retornando verde se tudo deu certo ou vermelho se algo deu errado.
+&nbsp;&nbsp;&nbsp;&nbsp;Com o Eclipse aberto, ir em src/test/Java e rodar o projeto com JUNIT, o sistema efetuará alguns testes de integração e alguns testes unitários, retornando verde se tudo deu certo ou vermelho se algo deu errado.(Normalmente quando você builda o projeto com mvn package ele já efetua os testes sozinho)
 
 ### <a name="Funcionalidades">5.Funcionalidades</a>
 
